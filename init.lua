@@ -473,6 +473,15 @@ require('lazy').setup({
           return 'make install_jsregexp'
         end)(),
         dependencies = {},
+        config = function()
+          require('luasnip').setup { enable_autosnippets = true }
+          require('luasnip.loaders.from_lua').load {
+            paths = {
+              '~/.config/nvim/snippets',
+            },
+          }
+          local ls = require 'luasnip'
+        end,
         opts = {},
       },
       'folke/lazydev.nvim',
@@ -619,7 +628,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.neo-tree',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
